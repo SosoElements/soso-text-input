@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+  <title>soso-text-input demo</title>
+
+  <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+  <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+  <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+  <link rel="import" href="../soso-text-input.html">
+
+  <custom-style>
+    <style is="custom-style" include="demo-pages-shared-styles">
+      soso-text-input {
+        margin: 15px 0;
+      }
+
+      .colored {
+        --soso-label-color: green;
+        color: #8080f0;
+      }
+    </style>
+  </custom-style>
+</head>
+
+<body>
+  <div class="vertical-section-container centered">
+    <h3>Basic soso-text-input demo</h3>
+    <demo-snippet>
+      <template>
+        <soso-text-input></soso-text-input>
+        <soso-text-input placeholder="Enter full name" label="Name"></soso-text-input>
+        <soso-text-input class="colored" placeholder="Enter location" label="Location"></soso-text-input>
+      </template>
+    </demo-snippet>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+{
+  "name": "soso-text-input",
+  "description": "Simple text input",
+  "main": "soso-text-input.html",
+  "license": "MIT",
+  "demos": {
+    "Demo": "demo/index.html"
+  },
+  "authors": [
+    "Preet Shihn"
+  ],
+  "keywords": [
+    "web-components",
+    "web-component",
+    "polymer",
+    "soso",
+    "input",
+    "text input",
+    "text field"
+  ],
+  "dependencies": {
+    "polymer": "Polymer/polymer#^2.0.0"
+  },
+  "devDependencies": {
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^2.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^1.0.0"
+  },
+  "resolutions": {
+    "polymer": "^2.0.0"
+  }
+}

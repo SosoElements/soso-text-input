@@ -1,0 +1,130 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="soso-text-input">
+  <template>
+    <style>
+      :host {
+        display: block;
+        font-size: inherit;
+        font-size: 16px;
+      }
+
+      .horizontal {
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+        -ms-flex-direction: row;
+        -webkit-flex-direction: row;
+        flex-direction: row;
+        -ms-flex-align: center;
+        -webkit-align-items: center;
+        align-items: center;
+      }
+
+      .flex {
+        -ms-flex: 1 1 0.000000001px;
+        -webkit-flex: 1;
+        flex: 1;
+        -webkit-flex-basis: 0.000000001px;
+        flex-basis: 0.000000001px;
+      }
+
+      .hidden {
+        display: none;
+      }
+
+      input {
+        display: block;
+        width: 100%;
+        box-sizing: border-box;
+        background: transparent;
+        outline: none;
+        border: none;
+        border-bottom: 1px solid;
+        color: inherit;
+        font-family: inherit;
+        font-size: inherit;
+        font-weight: inherit;
+        color: inherit;
+      }
+
+      label {
+        display: block;
+        font-size: var(--soso-label-size, 80%);
+        letter-spacing: 0.05em;
+        margin-bottom: 5px;
+        color: var(--soso-label-color, #4968d2);
+        opacity: 0;
+        transition: opacity 0.28s ease-out;
+      }
+
+      #validator {
+        font-size: var(--soso-validator-size, 70%);
+        padding-left: 5px;
+      }
+
+      .valid {
+        color: var(--soso-valid-color, #66BB6A);
+      }
+
+      .notvalid {
+        color: var(--soso-invalid-color, #EF5350);
+      }
+    </style>
+    <div class="horizontal">
+      <label class="flex" id="lbl" for="">[[label]]</label>
+      <div class="hidden" id="validator">[[_validation]]</div>
+    </div>
+    <input id="txt" type$="[[type]]" placeholder$="[[placeholder]]" on-input="_onInput">
+  </template>
+  <script>
+    class SosoTextInput extends Polymer.Element {
+      static get is() { return 'soso-text-input'; }
+      static get properties() {
+        return {
+          label: String,
+          placeholder: String,
+          type: {
+            type: String,
+            value: "text"
+          },
+          _validation: String
+        };
+      }
+      get input() {
+        return this.$.txt;
+      }
+      get value() {
+        return this.$.txt.value;
+      }
+      set value(v) {
+        this.$.txt.value = v;
+        this._onInput();
+      }
+      _onInput() {
+        if (this.value) {
+          this.$.lbl.style.opacity = 1;
+        } else {
+          this.$.lbl.style.opacity = 0;
+        }
+      }
+      validate(message, isError) {
+        this._validation = message || "";
+        if (message) {
+          this.$.validator.classList.remove("hidden");
+          if (isError) {
+            this.$.validator.classList.remove("valid");
+            this.$.validator.classList.add("notvalid");
+          } else {
+            this.$.validator.classList.add("valid");
+            this.$.validator.classList.remove("notvalid");
+          }
+        } else {
+          this.$.validator.classList.add("hidden");
+        }
+      }
+    }
+
+    window.customElements.define(SosoTextInput.is, SosoTextInput);
+  </script>
+</dom-module>
