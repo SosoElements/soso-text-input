@@ -6,7 +6,6 @@
       :host {
         display: block;
         font-size: inherit;
-        font-size: 16px;
       }
 
       .horizontal {
@@ -75,7 +74,7 @@
       <label class="flex" id="lbl" for="">[[label]]</label>
       <div class="hidden" id="validator">[[_validation]]</div>
     </div>
-    <input id="txt" type$="[[type]]" placeholder$="[[placeholder]]" on-input="_onInput">
+    <input id="txt" type$="[[type]]" placeholder$="[[placeholder]]" on-input="_onInput" on-change="_onChange">
   </template>
   <script>
     class SosoTextInput extends Polymer.Element {
@@ -107,6 +106,10 @@
         } else {
           this.$.lbl.style.opacity = 0;
         }
+      }
+      _onChange(event) {
+        event.stopPropagation();
+        this.dispatchEvent(new CustomEvent('change', { bubbles: true, composed: true, detail: { value: this.value } }));
       }
       validate(message, isError) {
         this._validation = message || "";
