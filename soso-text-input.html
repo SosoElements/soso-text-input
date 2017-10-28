@@ -81,7 +81,10 @@
       static get is() { return 'soso-text-input'; }
       static get properties() {
         return {
-          label: String,
+          label: {
+            type: String,
+            observer: '_labelChanged'
+          },
           placeholder: String,
           type: {
             type: String,
@@ -99,6 +102,11 @@
       set value(v) {
         this.$.txt.value = v;
         this._onInput();
+      }
+      _labelChanged() {
+        if (!this.placeholder) {
+          this.placeholder = this.label;
+        }
       }
       _onInput() {
         if (this.value) {
